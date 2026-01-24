@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from backend.config.db import client
 
-app = FastAPI()
+app = FastAPI(title="CertifyAI Backend")
 
 @app.on_event("startup")
 async def startup_db():
