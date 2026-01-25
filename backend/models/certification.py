@@ -19,7 +19,6 @@ class Certification(BaseModel):
         default="N/A", 
         validation_alias=AliasChoices("Company", "provider")
     )
-    
 
     model_config = ConfigDict(
         populate_by_name=True,
