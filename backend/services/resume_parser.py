@@ -1,23 +1,26 @@
 import fitz  # PyMuPDF
 import re
 
-def extract_text_from_pdf(file_bytes):
+def get_text_from_pdf(file_bytes):
     doc = fitz.open(stream=file_bytes, filetype="pdf")
-    text = ""
-    for page in doc:
-        text += page.get_text()
-    return text
+    # Extract text and join lines with spaces to fix hyphenated words
+    text = " ".join([page.get_text() for page in doc])
+    # Remove extra whitespace and newlines
+    return " ".join(text.split())
 
-def parse_skills(text, known_skills):
-    # known_skills is a list of skills from your Cloud Atlas DB
+def extract_skills_robust(resume_text, db_skills):
     found_skills = []
     
-    # Convert text to lowercase for easier matching
-    text_lower = text.lower()
+    # Lowercase everything for case-insensitive matching
+    resume_text = resume_text.lower()
     
-    for skill in known_skills:
-        # Use regex to find the skill as a whole word (so "Java" doesn't match "Javascript")
-        if re.search(rf'\b{re.escape(skill.lower())}\b', text_lower):
+    for skill in db_skills:
+        # This Regex is the "Secret Sauce":
+        # \b ensures we match 'Java' but NOT the 'Java' inside 'Javascript'
+        # re.escape handles special characters like C++ or .NET
+        pattern = rf'\b{re.escape(skill.lower())}\b'
+        
+        if re.search(pattern, resume_text):
             found_skills.append(skill)
             
-    return list(set(found_skills)) # Remove duplicates
+    return sorted(list(set(found_skills)))
