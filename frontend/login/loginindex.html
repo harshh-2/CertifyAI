@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CertifiAI | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="loginstyle.css" />
+</head>
+<body>
+
+<!-- AI PARTICLE CANVAS -->
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+  <!-- LEFT PANEL -->
+  <div class="login-panel">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h2>CertifiAI</h2>
+    </div>
+
+    <h1>Welcome!</h1>
+    <p class="subtitle">Log in to CertifiAI to continue.</p>
+
+    <button class="social google">Log in with Google</button>
+    <button class="social apple">Log in with Apple</button>
+
+    <div class="divider"><span>OR</span></div>
+
+    <form>
+      <label>Email</label>
+      <input type="email" placeholder="Your email address" required />
+
+      <div class="password-row">
+        <label>Password</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <input type="password" placeholder="Your password" required />
+
+      <button type="submit" class="login-btn">Log in</button>
+    </form>
+
+    <p class="signup">
+      Don’t have an account?
+      <a href="#">Sign up</a>
+    </p>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="promo-panel">
+    <div class="promo-content">
+      <h2>400K+ users.</h2>
+      <h3>50M+ AI generated certifications.</h3>
+      <button class="join-btn">Join Now</button>
+    </div>
+
+    <!-- 3D CUBE -->
+    <div class="scene">
+      <div class="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="loginscript.js"></script>
+</body>
+</html>
