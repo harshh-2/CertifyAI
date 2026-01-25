@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CertifiAI</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">CertifiAI</div>
+
+    <ul class="nav-links">
+      <li>Products</li>
+      <li>Resources</li>
+      <li>Career Paths</li>
+      <li>Reviews</li>
+      <li>Pricing</li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn ghost">Log in</button>
+      <button class="btn primary">Sign up</button>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li>Product</li>
+      <li>Resources</li>
+      <li>Career Paths</li>
+      <li>Reviews</li>
+      <li>Pricing</li>
+      <li class="divider"></li>
+      <li>Log in</li>
+      <li class="signup">Sign up</li>
+    </ul>
+  </div>
+</header>
+
+<main class="app-shell">
+
+<section class="hero hero-split">
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      A purpose-built platform for<br>
+      certifications & career clarity
+    </h1>
+
+    <p class="hero-description">
+      Meet the system for modern student upskilling.
+      Streamline certifications, resumes, and career roadmaps.
+    </p>
+
+    <div class="hero-actions">
+      <button class="hero-primary">Start building</button>
+      <a href="#" class="hero-link">New: Resume Builder (Beta) →</a>
+    </div>
+  </div>
+
+  <div class="hero-circles">
+
+    <svg viewBox="0 0 300 260" class="venn-svg">
+      <defs>
+        <radialGradient id="centerGlow">
+          <stop offset="0%" stop-color="var(--glow)" stop-opacity="0.9"/>
+          <stop offset="70%" stop-color="var(--glow)" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- CENTER GLOW -->
+      <circle cx="150" cy="140" r="42" fill="url(#centerGlow)" class="center-glow"/>
+
+      <!-- OVERLAP REACTIVE ZONE -->
+      <circle cx="150" cy="140" r="26" class="overlap-zone"/>
+
+      <!-- CIRCLES -->
+      <circle class="venn-circle active" data-feature="ai" cx="150" cy="80" r="70"/>
+      <text x="150" y="85" text-anchor="middle" class="venn-text">AI</text>
+
+      <circle class="venn-circle" data-feature="cert" cx="90" cy="170" r="70"/>
+      <text x="90" y="175" text-anchor="middle" class="venn-text">CERTIFICATIONS</text>
+
+      <circle class="venn-circle" data-feature="career" cx="210" cy="170" r="70"/>
+      <text x="210" y="175" text-anchor="middle" class="venn-text">CAREER PATH</text>
+    </svg>
+
+    <div class="feature-display">
+      <h3 id="featureTitle">AI-Powered Guidance</h3>
+      <p id="featureDesc">
+        Intelligent recommendations connecting certifications,
+        resumes, and career outcomes.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-card">AI Certification Recommender</div>
+  <div class="feature-card">Certification Vault</div>
+  <div class="feature-card">Career Path Explorer</div>
+  <div class="feature-card">Verified Reviews</div>
+  <div class="feature-card">AI Doubt Solver</div>
+  <div class="feature-card">Rewards & Discounts</div>
+</section>
+
+<footer>
+  © 2026 CertifiAI · Built for students
+</footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
