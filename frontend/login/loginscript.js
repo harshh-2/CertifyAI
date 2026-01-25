@@ -52,3 +52,50 @@ function animate() {
 }
 
 animate();
+
+// ---------------- LOGIN LOGIC ----------------
+
+async function loginUser() {
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+
+  if (!emailInput || !passwordInput) {
+    console.error("Email or Password input not found");
+    return;
+  }
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.detail || "Invalid credentials");
+      return;
+    }
+
+    // Store JWT token
+    localStorage.setItem("token", data.access_token);
+
+    // Redirect after login
+    window.location.href = "../index.html";
+
+  } catch (error) {
+    console.error(error);
+    alert("Backend server not reachable");
+  }
+}
