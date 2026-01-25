@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CertifiAI | Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="signupstyle.css" />
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="page">
+  <div class="container glass">
+
+    <!-- LEFT PANEL (SIGNUP FORM) -->
+    <section class="login-panel">
+      <div class="brand">
+        <span class="logo-dot"></span>
+        <h2>CertifiAI</h2>
+      </div>
+
+      <h1>Create Account</h1>
+      <p class="subtitle">Start your certification journey.</p>
+
+      <form onsubmit="signupUser(); return false;">
+
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Choose a username" required />
+
+        <label>Year of College</label>
+        <input type="number" id="year" placeholder="Eg. 2" min="1" max="6" required />
+
+        <label>Age</label>
+        <input type="number" id="age" placeholder="Your age" required />
+
+        <label>Institution</label>
+        <input type="text" id="institution" placeholder="College / University name" required />
+
+        <label>Gender</label>
+        <select id="gender" required>
+          <option value="">Select gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+          <option>Prefer not to say</option>
+        </select>
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Create password" required />
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+
+        <button type="submit" class="login-btn">Create Account</button>
+      </form>
+
+      <p class="login">
+        Already have an account? <a href="../login/loginindex.html">Log in</a>
+      </p>
+    </section>
+
+    <!-- RIGHT PANEL (UNCHANGED HERO) -->
+    <section class="promo-panel hero-panel">
+
+      <div class="cube-bg">
+        <div class="scene">
+          <div class="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <h1>
+          A purpose-built platform for<br />
+          <span>certifications & career clarity.</span>
+        </h1>
+
+        <p>
+          Track skills, certifications, resumes, and career roadmaps —
+          all personalized to your academic journey.
+        </p>
+
+        <button class="hero-btn">Explore Platform</button>
+      </div>
+
+      <div class="brand-strip">
+        <span>salesforce</span>
+        <span>amazon</span>
+        <span>IBM</span>
+        <span>accenture</span>
+        <span>intel</span>
+      </div>
+
+    </section>
+
+  </div>
+</div>
+
+<script src="signupscript.js"></script>
+</body>
+</html>
