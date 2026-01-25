@@ -1,0 +1,350 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===== BASE ===== */
+body {
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ===== PARTICLES ===== */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* ===== GLASS ===== */
+.glass {
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.9),
+    inset 0 0 24px rgba(255, 255, 255, 0.02);
+}
+
+/* ===== LEFT PANEL ===== */
+.login-panel {
+  width: 45%;
+  padding: 48px 40px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.logo-dot {
+  width: 12px;
+  height: 12px;
+  background: #8b5cf6;
+  border-radius: 50%;
+}
+
+.login-panel h1 {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  opacity: 0.6;
+  margin-bottom: 28px;
+}
+
+/* ===== SOCIAL BUTTONS ===== */
+.social {
+  width: 100%;
+  padding: 12px 16px;
+  background: #050505;
+  border: 1px solid #222;
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.social:hover {
+  border-color: #8b5cf6;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-icon {
+  background: conic-gradient(
+    #4285F4 0deg 90deg,
+    #34A853 90deg 180deg,
+    #FBBC05 180deg 270deg,
+    #EA4335 270deg 360deg
+  );
+  border-radius: 50%;
+}
+
+.apple-icon {
+  font-size: 18px;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  margin: 24px 0;
+  position: relative;
+  text-align: center;
+}
+
+.divider span {
+  padding: 0 12px;
+  background: #000;
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #222;
+}
+
+/* ===== FORM ===== */
+label {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 18px;
+  background: #050505;
+  border: 1px solid #222;
+  border-radius: 8px;
+  color: #fff;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.password-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password-row a {
+  font-size: 13px;
+  color: #8b5cf6;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  color: #aaa;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-btn:hover {
+  border-color: #8b5cf6;
+  color: #fff;
+}
+
+.login {
+  margin-top: 22px;
+  opacity: 0.6;
+}
+
+/* ===== RIGHT PANEL ===== */
+.promo-panel {
+  width: 55%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* ===== HERO (BLACKBOX STYLE) ===== */
+.hero-panel {
+  padding: 64px 56px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 520px;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.hero-content h1 span {
+  font-weight: 700;
+}
+
+.hero-content p {
+  margin-top: 18px;
+  font-size: 15px;
+  opacity: 0.65;
+  line-height: 1.6;
+}
+
+.hero-btn {
+  margin-top: 26px;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== BRAND STRIP ===== */
+.brand-strip {
+  position: absolute;
+  bottom: 24px;
+  left: 56px;
+  right: 56px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* ===== AMBIENT CUBE ===== */
+.cube-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  perspective: 1200px;
+}
+
+.scene {
+  width: 360px;
+  height: 360px;
+  opacity: 0.28;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotateCube 28s linear infinite;
+}
+
+.face {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow:
+    0 0 18px rgba(139, 92, 246, 0.3),
+    inset 0 0 18px rgba(139, 92, 246, 0.12);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.18),
+    rgba(139, 92, 246, 0.02)
+  );
+}
+
+.front  { transform: translateZ(180px); }
+.back   { transform: rotateY(180deg) translateZ(180px); }
+.right  { transform: rotateY(90deg) translateZ(180px); }
+.left   { transform: rotateY(-90deg) translateZ(180px); }
+.top    { transform: rotateX(90deg) translateZ(180px); }
+.bottom { transform: rotateX(-90deg) translateZ(180px); }
+
+@keyframes rotateCube {
+  from { transform: rotateX(15deg) rotateY(0deg); }
+  to   { transform: rotateX(15deg) rotateY(360deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .login-panel,
+  .promo-panel {
+    width: 100%;
+  }
+
+  .hero-panel {
+    padding: 40px 28px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .brand-strip {
+    position: static;
+    margin-top: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .scene {
+    width: 260px;
+    height: 260px;
+  }
+}
