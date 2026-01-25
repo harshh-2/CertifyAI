@@ -8,65 +8,70 @@
 </head>
 <body>
 
-<!-- AI PARTICLE CANVAS -->
 <canvas id="particles"></canvas>
 
-<div class="container">
+<div class="page">
+  <div class="container glass">
 
-  <!-- LEFT PANEL -->
-  <div class="login-panel">
-    <div class="brand">
-      <span class="logo-dot"></span>
-      <h2>CertifiAI</h2>
-    </div>
-
-    <h1>Welcome!</h1>
-    <p class="subtitle">Log in to CertifiAI to continue.</p>
-
-    <button class="social google">Log in with Google</button>
-    <button class="social apple">Log in with Apple</button>
-
-    <div class="divider"><span>OR</span></div>
-
-    <form>
-      <label>Email</label>
-      <input type="email" placeholder="Your email address" required />
-
-      <div class="password-row">
-        <label>Password</label>
-        <a href="#">Forgot password?</a>
+    <!-- LEFT PANEL -->
+    <section class="login-panel">
+      <div class="brand">
+        <span class="logo-dot"></span>
+        <h2>CertifiAI</h2>
       </div>
 
-      <input type="password" placeholder="Your password" required />
+      <h1>Welcome!</h1>
+      <p class="subtitle">Log in to CertifiAI to continue.</p>
 
-      <button type="submit" class="login-btn">Log in</button>
-    </form>
+      <button class="social google">
+        <span class="icon google-icon"></span>
+        <span>Log in with Google</span>
+      </button>
 
-    <p class="signup">
-      Don’t have an account?
-      <a href="#">Sign up</a>
-    </p>
-  </div>
+      <button class="social apple">
+        <span class="icon apple-icon"></span>
+        <span>Log in with Apple</span>
+      </button>
 
-  <!-- RIGHT PANEL -->
-  <div class="promo-panel">
-    <div class="promo-content">
-      <h2>400K+ users.</h2>
-      <h3>50M+ AI generated certifications.</h3>
-      <button class="join-btn">Join Now</button>
-    </div>
+      <div class="divider"><span>OR</span></div>
 
-    <!-- 3D CUBE -->
-    <div class="scene">
-      <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
+      <form>
+        <label>Username</label>
+        <input type="text" placeholder="Enter your username" />
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" />
+        <div class="password-row">
+          <label>Password</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <input type="password" placeholder="Enter your password" />
+        <button class="login-btn">Log in</button>
+      </form>
+
+      <p class="signup">Don’t have an account? <a href="#">Sign up</a></p>
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <section class="promo-panel">
+      <div class="cube-bg">
+        <div class="scene">
+          <div class="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div class="promo-content">
+        <h2>400K+ users.</h2>
+        <h3>50M+ AI generated certifications.</h3>
+        <button class="join-btn">Join Now</button>
+      </div>
+    </section>
 
   </div>
 </div>

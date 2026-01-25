@@ -1,4 +1,3 @@
-/* ---------- AI PARTICLE BACKGROUND ---------- */
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
@@ -10,15 +9,15 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-const particles = Array.from({ length: 90 }, () => ({
+const particles = Array.from({ length: 70 }, () => ({
   x: Math.random() * w,
   y: Math.random() * h,
-  vx: (Math.random() - 0.5) * 0.4,
-  vy: (Math.random() - 0.5) * 0.4,
-  r: Math.random() * 2 + 1
+  vx: (Math.random() - 0.5) * 0.25,
+  vy: (Math.random() - 0.5) * 0.25,
+  r: Math.random() * 1.8 + 0.6
 }));
 
-function draw() {
+function animate() {
   ctx.clearRect(0, 0, w, h);
 
   particles.forEach(p => {
@@ -30,19 +29,17 @@ function draw() {
 
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(139,92,246,0.8)";
+    ctx.fillStyle = "rgba(139,92,246,0.6)";
     ctx.fill();
   });
 
-  // CONNECT LINES
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
       const dy = particles[i].y - particles[j].y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < 120) {
-        ctx.strokeStyle = "rgba(139,92,246,0.15)";
+      if (dist < 110) {
+        ctx.strokeStyle = "rgba(139,92,246,0.1)";
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
@@ -51,13 +48,7 @@ function draw() {
     }
   }
 
-  requestAnimationFrame(draw);
+  requestAnimationFrame(animate);
 }
 
-draw();
-
-/* FORM PLACEHOLDER */
-document.querySelector("form").addEventListener("submit", e => {
-  e.preventDefault();
-  alert("CertifiAI login clicked (connect backend)");
-});
+animate();
