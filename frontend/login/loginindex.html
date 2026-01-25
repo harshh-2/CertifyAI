@@ -35,18 +35,37 @@
 
       <div class="divider"><span>OR</span></div>
 
-      <form>
+      <form onsubmit="loginUser(); return false;">
         <label>Username</label>
-        <input type="text" placeholder="Enter your username" />
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter your username"
+        />
+
         <label>Email</label>
-        <input type="email" placeholder="Enter your email" />
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+
         <div class="password-row">
           <label>Password</label>
           <a href="#">Forgot password?</a>
         </div>
-        <input type="password" placeholder="Enter your password" />
-        <button class="login-btn">Log in</button>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <button type="submit" class="login-btn">Log in</button>
       </form>
+
 
       <p class="signup">Don’t have an account? <a href="#">Sign up</a></p>
     </section>
@@ -100,3 +119,5 @@
 <script src="loginscript.js"></script>
 </body>
 </html>
+
+
