@@ -1,19 +1,27 @@
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List, Optional
+from pydantic import BaseModel, Field, ConfigDict, AliasChoices
+from typing import Optional, List, Any
 
 class Certification(BaseModel):
-    # 'cert_id' from your JSON, but we use 'id' in Python
-    id: str = Field(alias="cert_id")
-    title: str
-    provider: str
-    domain: str
-    difficulty: str
-    duration_weeks: int
-    price: float
-    skills: List[str]
-    rating: float
+    # This maps multiple possible database keys to your new clean schema
+    Domain: Optional[Any] = Field(
+        default="N/A", 
+        validation_alias=AliasChoices("Domain", "domain")
+    )
+    Skill: Optional[Any] = Field(
+        default="N/A", 
+        validation_alias=AliasChoices("Skill", "skills")
+    )
+    Certification: Optional[Any] = Field(
+        default="N/A", 
+        validation_alias=AliasChoices("Certification", "name", "title")
+    )
+    Company: Optional[Any] = Field(
+        default="N/A", 
+        validation_alias=AliasChoices("Company", "provider")
+    )
+    
 
     model_config = ConfigDict(
-        populate_by_name=True,  # Allows you to use either 'id' or 'cert_id'
-        extra='ignore'          # Ignores MongoDB internal fields like __v
+        populate_by_name=True,
+        extra='ignore' # This ignores the extra fields like 'rating' or 'price'
     )
