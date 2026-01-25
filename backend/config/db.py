@@ -10,4 +10,9 @@ MONGO_URL = os.getenv("MONGO_URL")
 DB_NAME = os.getenv("DB_NAME")
 
 client = AsyncIOMotorClient(MONGO_URL)
-database = client[DB_NAME]
+db = client[DB_NAME]
+
+# Collection Handles
+cert_col = db.get_collection("certifications") # Your Excel data
+user_col = db.get_collection("users")          # Your CRUD data
+review_col = db.get_collection("reviews")
