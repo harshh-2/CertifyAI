@@ -1,7 +1,7 @@
 import re
 from fastapi import APIRouter, UploadFile, File
-from backend.config.db import cert_col
-from backend.services.resume_parser import get_text_from_pdf, extract_skills_robust
+from config.db import cert_col
+from services.resume_parser import get_text_from_pdf, extract_skills_robust
 
 router = APIRouter()
 

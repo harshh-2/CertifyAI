@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from backend.config.db import client
-from backend.routes import auth, recommend  # This pulls from backend/app/routes/
+from config.db import client
+from routes import auth, recommend  # This pulls from backend/app/routes/
+from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -23,3 +24,11 @@ app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
 @app.get("/")
 async def health_check():
     return {"status": "online", "database": "connected"}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
