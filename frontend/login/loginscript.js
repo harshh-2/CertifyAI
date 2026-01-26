@@ -99,5 +99,4 @@ async function loginUser() {
     alert("Backend server not reachable");
   }
 }
-
 localStorage.setItem("token", result.access_token);
