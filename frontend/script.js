@@ -10,6 +10,29 @@ particlesJS("particles-js", {
     move: { speed: 1.4 }
   }
 });
+// index.html logic
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.path-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const pathName = card.innerText.trim();
+            const skillsString = card.dataset.skills;
+
+            if (!pathName || !skillsString) {
+                console.error("Path or skills missing");
+                return;
+            }
+
+            const targetURL =
+                `./Certifications/certificationsindex.html` +
+                `?path=${encodeURIComponent(pathName)}` +
+                `&skills=${encodeURIComponent(skillsString)}`;
+
+            console.log("Redirecting to:", targetURL);
+            window.location.href = targetURL;
+        });
+    });
+
+});
 
 /* NAVBAR */
 document.getElementById("hamburger")

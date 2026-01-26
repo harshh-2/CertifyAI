@@ -67,32 +67,52 @@ async def parse_resume(file: UploadFile = File(...),current_user: dict = Depends
 
 @router.post("/recommend-by-path")
 async def recommend_by_path(
-    selected_path: str, 
-    detected_skills: List[str] = Body(...),
-    current_user: dict = Depends(get_current_user)
+    selected_path: str,
+    detected_skills: List[str] = Body(...)
 ):
     if selected_path not in CAREER_PATHS:
         return {"error": "Invalid path selection"}
 
     required_skills = CAREER_PATHS[selected_path]
-    user_skills_set = set([s.lower() for s in detected_skills])
-    
+    user_skills_set = set(s.lower() for s in detected_skills)
+
     matching = [s for s in required_skills if s.lower() in user_skills_set]
     missing = [s for s in required_skills if s.lower() not in user_skills_set]
-    
+
     recommendations = []
+
     if missing:
-        regex_pattern = "|".join([re.escape(s) for s in missing])
-        async for cert in cert_col.find({"Skill": {"$regex": regex_pattern, "$options": "i"}}).limit(7):
+        # 🧩 GAP-FILLING CERTIFICATIONS
+        regex_pattern = "|".join(re.escape(s) for s in missing)
+
+        async for cert in cert_col.find(
+            {"Skill": {"$regex": regex_pattern, "$options": "i"}}
+        ).limit(7):
             cert["_id"] = str(cert["_id"])
-            # Re-calculate score specifically for this cert vs user skills
-            score, m, mis = calculate_match_score(detected_skills, cert.get("Skill", ""))
-            cert.update({"match_score": score, "matching_skills": m, "missing_skills": mis})
+            score, m, mis = calculate_match_score(missing, cert.get("Skill", ""))
+            cert.update({
+                "match_score": score,
+                "matching_skills": m,
+                "missing_skills": mis
+            })
+            recommendations.append(cert)
+
+    else:
+        # 🎓 VALIDATION / ADVANCED CERTIFICATIONS
+        async for cert in cert_col.find(
+            {"Domain": {"$regex": selected_path.split()[0], "$options": "i"}}
+        ).limit(5):
+            cert["_id"] = str(cert["_id"])
+            cert.update({
+                "match_score": 100,
+                "matching_skills": required_skills,
+                "missing_skills": []
+            })
             recommendations.append(cert)
 
     return {
         "path": selected_path,
         "matching_skills": matching,
         "missing_skills": missing,
-        "recommendations": sorted(recommendations, key=lambda x: x['match_score'], reverse=True)
+        "recommendations": recommendations
     }
