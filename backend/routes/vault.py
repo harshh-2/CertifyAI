@@ -11,6 +11,10 @@ import pdfplumber
 from PIL import Image
 import pytesseract
 
+# NEW imports
+from utils.provider_map import PROVIDER_MAP
+from utils.skill_map import SKILL_MAP
+
 router = APIRouter()
 
 vault_col = db["certificates"]
@@ -47,13 +51,34 @@ def extract_text(file: UploadFile, content: bytes):
 
 
 def detect_title(text: str):
-
     lines = [l.strip() for l in text.split("\n") if len(l.strip()) > 6]
-
     if lines:
         return lines[0][:120]
-
     return "Unnamed Certificate"
+
+
+# NEW — Provider detection
+def detect_provider(text: str):
+    text = text.lower()
+    for k, v in PROVIDER_MAP.items():
+        if k in text:
+            return v
+    return "Unknown"
+
+
+# NEW — Skill extraction
+def extract_skills(text: str):
+    text = text.lower()
+    found = []
+
+    for k, v in SKILL_MAP.items():
+        if k in text:
+            found.append({
+                "name": v,
+                "confidence": 0.8
+            })
+
+    return found
 
 
 # ---------------- ROUTES ----------------
@@ -75,10 +100,17 @@ async def upload_certificate(
     extracted_text = extract_text(file, content)
     title = detect_title(extracted_text)
 
+    # NEW
+    provider = detect_provider(extracted_text)
+    skills = extract_skills(extracted_text)
+
     doc = {
         "user_id": user_id,
         "original_filename": file.filename,
-        "detected_title": title,
+        "certificate_name": title,
+        "provider": provider,
+        "skills": skills,
+        "raw_text": extracted_text,
         "file_hash": file_hash,
         "uploaded_at": datetime.utcnow()
     }
@@ -87,16 +119,23 @@ async def upload_certificate(
 
     return {
         "status": "uploaded",
-        "detected_title": title
+        "certificate_name": title,
+        "provider": provider,
+        "skills": skills
     }
 
 
 @router.get("/vault/my-certificates")
 def get_my_certificates(user_id: str = Depends(get_current_user)):
 
-    certs = list(vault_col.find(
-        {"user_id": user_id},
-        {"_id": 0}
-    ))
+    certs = list(
+        vault_col.find(
+            {"user_id": user_id},
+            {"_id": 0}
+        ).sort("uploaded_at", -1)
+    )
 
-    return certs
+    return {
+        "total": len(certs),
+        "certificates": certs
+    }

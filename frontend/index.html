@@ -163,7 +163,7 @@
             Not sure where to start? Discover emerging career paths
             and certifications tailored for modern students.
           </p>
-          <button class="explore-btn">Discover Paths</button>
+          <button class="explore-btn" id="discoverPaths">Discover Paths</button>
         </div>
       </div>
 
@@ -183,7 +183,41 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<!-- ===== POPUP 2 : POPULAR PATHS ===== -->
+<div class="path-overlay" id="pathOverlay">
+  <div class="path-modal">
+
+    <button class="path-close" id="closePath">×</button>
+
+    <h2 class="path-title">Choose from Popular Paths</h2>
+
+    <div class="path-grid">
+
+      <div class="path-card" data-skills="Python • Machine Learning • Deep Learning • PyTorch • TensorFlow • NLP • SQL">
+        AI / ML Engineer
+      </div>
+
+      <div class="path-card" data-skills="HTML • CSS • JavaScript • React • TypeScript • Angular • Vue">
+        Frontend Developer
+      </div>
+
+      <div class="path-card" data-skills="JavaScript • Node.js • React • MongoDB • SQL • HTML • CSS • Express">
+        Fullstack Developer
+      </div>
+
+      <div class="path-card" data-skills="AWS • Docker • Kubernetes • Azure • Terraform • Linux">
+        Cloud Engineer
+      </div>
+
+      <div class="path-card" data-skills="CI/CD • Docker • Kubernetes • Jenkins • AWS • Python • Linux">
+        DevOps Engineer
+      </div>
+
+    </div>
+
+    <button class="create-path-btn">Create your own path</button>
+  </div>
+</div>
 
 </body>
 </html>

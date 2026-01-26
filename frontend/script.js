@@ -78,45 +78,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
+/* ===== POPUP SWITCH ===== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const token = localStorage.getItem("token");
+  const discoverBtn = document.getElementById("discoverPaths");
+  const exploreOverlay = document.getElementById("exploreOverlay");
+  const pathOverlay = document.getElementById("pathOverlay");
 
-  // Desktop
-  const authLinks = document.getElementById("auth-links");
-  const profileLinks = document.getElementById("profile-links");
+  if (!discoverBtn) return;
 
-  // Mobile
-  const mobileLogin = document.getElementById("mobile-login");
-  const mobileSignup = document.getElementById("mobile-signup");
-  const mobileProfile = document.getElementById("mobile-profile");
-  const mobileLogout = document.getElementById("mobile-logout");
+  discoverBtn.addEventListener("click", () => {
+    exploreOverlay.classList.remove("active");
 
-  if (token) {
-    authLinks.style.display = "none";
-    profileLinks.style.display = "flex";
-
-    mobileLogin.style.display = "none";
-    mobileSignup.style.display = "none";
-    mobileProfile.style.display = "block";
-    mobileLogout.style.display = "block";
-  } else {
-    authLinks.style.display = "flex";
-    profileLinks.style.display = "none";
-
-    mobileLogin.style.display = "block";
-    mobileSignup.style.display = "block";
-    mobileProfile.style.display = "none";
-    mobileLogout.style.display = "none";
-  }
+    setTimeout(() => {
+      pathOverlay.classList.add("active");
+    }, 250); // smooth transition
+  });
 });
 
-function logout() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("username");
-  window.location.href = "/";
-}
+/* ===== CLOSE POPUP 2 ===== */
 
+document.addEventListener("DOMContentLoaded", () => {
+  const closePath = document.getElementById("closePath");
+  const pathOverlay = document.getElementById("pathOverlay");
 
+  if (!closePath) return;
 
+  closePath.addEventListener("click", () => {
+    pathOverlay.classList.remove("active");
+  });
+});
