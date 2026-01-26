@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 
+
 <body>
 
 <div id="particles-js"></div>
@@ -27,10 +28,17 @@
       <li>Pricing</li>
     </ul>
 
+<<<<<<< Updated upstream
     <div class="nav-actions">
       <a href="/frontend/login/loginindex.html" class="btn ghost">Log in</a>
       <a href="/frontend/signup/signupindex.html" class="btn primary">Sign up</a>
     </div>
+=======
+<div class="nav-actions">
+<a href="../login/loginindex.html" class="btn ghost">Log in</a>
+<a href="../signup/signupindex.html" class="btn primary">Sign up</a>
+</div>
+>>>>>>> Stashed changes
 
 
     <div class="hamburger" id="hamburger">
@@ -68,7 +76,7 @@
     </p>
 
     <div class="hero-actions">
-      <button class="hero-primary">Start building</button>
+      <button class="hero-primary">Start Exploring</button>
       <a href="#" class="hero-link">New: Resume Builder (Beta) →</a>
     </div>
   </div>
@@ -127,5 +135,42 @@
 </main>
 
 <script src="script.js"></script>
+
+<!-- ===== START EXPLORING POPUP ===== -->
+<div class="explore-overlay" id="exploreOverlay">
+  <div class="explore-modal">
+
+    <button class="explore-close" id="closeExplore">×</button>
+
+    <div class="explore-grid">
+
+      <!-- LEFT SECTION -->
+      <div class="explore-card explore-ideas">
+        <div class="explore-content">
+          <h2>Explore New Path Ideas</h2>
+          <p>
+            Not sure where to start? Discover emerging career paths
+            and certifications tailored for modern students.
+          </p>
+          <button class="explore-btn">Discover Paths</button>
+        </div>
+      </div>
+
+      <!-- RIGHT SECTION -->
+      <div class="explore-card explore-resume">
+        <div class="explore-content">
+          <h2>Upload Your Resume</h2>
+          <p>
+            Let AI analyze your resume and recommend certifications
+            that best match your skills and goals.
+          </p>
+          <button class="explore-btn light">Upload Resume</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

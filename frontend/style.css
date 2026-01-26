@@ -140,7 +140,7 @@ body {
 .hero-primary {
   background: #fff;
   color: #000;
-  padding: 12px 24px;
+  padding: 19px 24px;
   border-radius: 10px;
 }
 
@@ -292,4 +292,133 @@ footer {
   }
 
   .hero-actions { justify-content: center; }
+}
+
+/* ================= START EXPLORING POPUP ================= */
+
+.explore-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.explore-overlay.active {
+  display: flex;
+}
+
+.explore-modal {
+  width: min(900px, 92%);
+  background: #0b0b0d;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.explore-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: #aaa;
+  cursor: pointer;
+  z-index: 5;
+}
+.explore-close:hover { color: #fff; }
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 360px;
+}
+
+/* SHARED CARD STYLE */
+.explore-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 36px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.explore-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.25)
+  );
+  z-index: 1;
+}
+
+/* BACKGROUND IMAGES */
+.explore-ideas {
+  background:
+    url("https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=1200&q=80")
+    center / cover no-repeat;
+}
+
+.explore-resume {
+  background:
+    url("https://img.freepik.com/free-photo/closeup-job-applicant-giving-his-resume-job-interview-office_637285-6549.jpg")
+    center / cover no-repeat;
+}
+
+/* CONTENT */
+.explore-content {
+  position: relative;
+  z-index: 2;
+  max-width: 320px;
+}
+
+.explore-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.explore-content p {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #d4d4d8;
+  line-height: 1.5;
+}
+
+.explore-btn {
+  margin-top: 22px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+}
+
+.explore-btn.light {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.explore-btn.light:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .explore-grid {
+    grid-template-columns: 1fr;
+  }
 }
