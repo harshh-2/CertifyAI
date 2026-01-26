@@ -52,44 +52,6 @@ circles.forEach(circle => {
   });
 });
 
-<<<<<<< Updated upstream
-async function signupUser() {
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
-  // ✅ Frontend-only validation
-  if (password !== confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
-
-  const data = {
-    username: document.getElementById("username").value,
-    email: document.getElementById("email").value,
-    password: password,
-    year_of_college: parseInt(document.getElementById("year").value),
-    age: parseInt(document.getElementById("age").value),
-    institution: document.getElementById("institution").value,
-    gender: document.getElementById("gender").value
-  };
-
-  const res = await fetch("http://127.0.0.1:8000/auth/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-
-  const result = await res.json();
-
-  if (res.ok) {
-    // ✅ store token if returned
-    localStorage.setItem("token", result.access_token);
-    window.location.href = "/frontend/login/loginindex.html";
-  } else {
-    alert(result.detail || "Signup failed");
-  }
-}
-=======
 /* ================= START EXPLORING POPUP ================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -113,4 +75,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
->>>>>>> Stashed changes
