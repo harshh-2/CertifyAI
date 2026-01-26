@@ -80,10 +80,4 @@ async def login(user: UserLogin):
     }
 
 
-@router.get("/db-test")
-async def db_test():
-    user = await user_col.find_one()
-    return {
-        "status": "ok",
-        "user_found": True if user else False
-    }
+
