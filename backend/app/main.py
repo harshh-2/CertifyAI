@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from config.db import client
 from routes import auth, recommend, vault
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 
 
 
@@ -38,3 +39,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app = FastAPI()
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="super-secret-session-key"
+)
+
+app.include_router(auth.router, prefix="/auth")
