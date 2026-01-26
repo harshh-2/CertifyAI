@@ -131,19 +131,21 @@
 </section>
 
 <section class="features">
-  <div class="feature-card">AI Certification Recommender</div>
-  <div class="feature-card">Certification Vault</div>
-  <div class="feature-card">Career Path Explorer</div>
-  <div class="feature-card">Verified Reviews</div>
-  <div class="feature-card">AI Doubt Solver</div>
-  <div class="feature-card">Rewards & Discounts</div>
+  <div class="feature-card" onclick="navigateToPath('AI Certification Recommender')">AI Certification Recommender</div>
+  <div class="feature-card" onclick="navigateToPath('Certification Vault')">Certification Vault</div>
+  <div class="feature-card" onclick="navigateToPath('Career Path Explorer')">Career Path Explorer</div>
+  <div class="feature-card" onclick="navigateToPath('Verified Reviews')">Verified Reviews</div>
+  <div class="feature-card" onclick="navigateToPath('AI Doubt Solver')">AI Doubt Solver</div>
+  <div class="feature-card" onclick="navigateToPath('Rewards & Discounts')">Rewards & Discounts</div>
 </section>
+
 
 <footer>
   © 2026 CertifiAI · Built for students
 </footer>
 
 </main>
+
 
 
 
@@ -183,7 +185,7 @@
   </div>
 </div>
 
-<!-- ===== POPUP 2 : POPULAR PATHS ===== -->
+<!-- ===== POPUP : POPULAR PATHS ===== -->
 <div class="path-overlay" id="pathOverlay">
   <div class="path-modal">
 
@@ -193,23 +195,28 @@
 
     <div class="path-grid">
 
-      <div class="path-card" data-skills="Python • Machine Learning • Deep Learning • PyTorch • TensorFlow • NLP • SQL">
-        AI / ML Engineer
+      <div class="path-card"
+           data-skills="Python • Machine Learning • Deep Learning • PyTorch • TensorFlow • NLP • SQL">
+        AI/ML Engineer
       </div>
 
-      <div class="path-card" data-skills="HTML • CSS • JavaScript • React • TypeScript • Angular • Vue">
+      <div class="path-card"
+           data-skills="HTML • CSS • JavaScript • React • TypeScript • Angular • Vue">
         Frontend Developer
       </div>
 
-      <div class="path-card" data-skills="JavaScript • Node.js • React • MongoDB • SQL • HTML • CSS • Express">
+      <div class="path-card"
+           data-skills="JavaScript • Node.js • React • MongoDB • SQL • HTML • CSS • Express">
         Fullstack Developer
       </div>
 
-      <div class="path-card" data-skills="AWS • Docker • Kubernetes • Azure • Terraform • Linux">
+      <div class="path-card"
+           data-skills="AWS • Docker • Kubernetes • Azure • Terraform • Linux">
         Cloud Engineer
       </div>
 
-      <div class="path-card" data-skills="CI/CD • Docker • Kubernetes • Jenkins • AWS • Python • Linux">
+      <div class="path-card"
+           data-skills="CI/CD • Docker • Kubernetes • Jenkins • AWS • Python • Linux">
         DevOps Engineer
       </div>
 
@@ -218,6 +225,6 @@
     <button class="create-path-btn">Create your own path</button>
   </div>
 </div>
-
+<script src="script.js"></script>
 </body>
 </html>
