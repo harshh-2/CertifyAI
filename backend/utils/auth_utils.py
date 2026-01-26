@@ -12,8 +12,8 @@ EXPIRE_MINUTES = int(os.getenv("JWT_EXPIRE_MINUTES", 60))
 def hash_password(password: str):
     return pwd_context.hash(password)
 
-def verify_password(password: str, hashed: str):
-    return pwd_context.verify(password, hashed)
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
 
 def create_access_token(data: dict):
     to_encode = data.copy()
