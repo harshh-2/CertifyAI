@@ -70,10 +70,11 @@ async function signupUser() {
     }
 
     alert("Account created successfully!");
-    window.location.href = "login.html";
+    window.location.href = "/login/loginindex.html";
 
   } catch (err) {
     console.error(err);
     alert("Backend server not reachable");
   }
 }
+
