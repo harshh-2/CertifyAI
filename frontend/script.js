@@ -1,3 +1,5 @@
+console.log("script.js loaded");
+
 /* PARTICLES */
 particlesJS("particles-js", {
   particles: {

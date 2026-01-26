@@ -29,9 +29,22 @@
     </ul>
 
 <div class="nav-actions">
-<a href="../login/loginindex.html" class="btn ghost">Log in</a>
-<a href="../signup/signupindex.html" class="btn primary">Sign up</a>
+
+  <!-- Logged OUT -->
+  <div id="auth-links">
+    <a href="../login/loginindex.html" class="btn ghost">Log in</a>
+    <a href="../signup/signupindex.html" class="btn primary">Sign up</a>
+  </div>
+
+  <!-- Logged IN -->
+  <div id="profile-links" style="display:none;">
+    <a href="../profile/profileindex.html" class="btn ghost">View Profile</a>
+    <button class="btn primary" onclick="logout()">Logout</button>
+
+  </div>
+
 </div>
+
 
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -46,8 +59,14 @@
       <li>Reviews</li>
       <li>Pricing</li>
       <li class="divider"></li>
-      <li>Log in</li>
-      <li class="signup">Sign up</li>
+      <li id="mobile-login"><a href="../login/loginindex.html">Log in</a></li>
+      <li id="mobile-signup" class="signup"><a href="../signup/signupindex.html">Sign up</a></li>
+      <li id="mobile-profile" style="display:none;">
+        <a href="../profile/profile.html">View Profile</a>
+      </li>
+      <li id="mobile-logout" style="display:none;" onclick="logout()">
+        Logout
+      </li>
     </ul>
   </div>
 </header>
@@ -126,7 +145,7 @@
 
 </main>
 
-<script src="script.js"></script>
+
 
 <!-- ===== START EXPLORING POPUP ===== -->
 <div class="explore-overlay" id="exploreOverlay">
