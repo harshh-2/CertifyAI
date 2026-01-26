@@ -75,3 +75,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* ===== POPUP SWITCH ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const discoverBtn = document.getElementById("discoverPaths");
+  const exploreOverlay = document.getElementById("exploreOverlay");
+  const pathOverlay = document.getElementById("pathOverlay");
+
+  if (!discoverBtn) return;
+
+  discoverBtn.addEventListener("click", () => {
+    exploreOverlay.classList.remove("active");
+
+    setTimeout(() => {
+      pathOverlay.classList.add("active");
+    }, 250); // smooth transition
+  });
+});
+
+/* ===== CLOSE POPUP 2 ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const closePath = document.getElementById("closePath");
+  const pathOverlay = document.getElementById("pathOverlay");
+
+  if (!closePath) return;
+
+  closePath.addEventListener("click", () => {
+    pathOverlay.classList.remove("active");
+  });
+});
