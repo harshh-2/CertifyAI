@@ -99,4 +99,11 @@ async function loginUser() {
     alert("Backend server not reachable");
   }
 }
-localStorage.setItem("token", result.access_token);
+if (res.ok) {
+  localStorage.setItem("token", data.access_token);
+  window.location.href = "/index.html";
+}
+
+
+
+
