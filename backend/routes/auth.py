@@ -43,7 +43,7 @@ async def signup(user: UserSignup):
     # 4️⃣ Insert into DB
     await user_col.insert_one(new_user)
 
-    # 5️⃣ (Optional) Auto-login after signup
+    # 5️⃣ Auto-login after signup
     token = create_access_token({"sub": user.email})
 
     return {
@@ -78,4 +78,12 @@ async def login(user: UserLogin):
             "email": db_user["email"]
         }
     }
-    
+
+
+@router.get("/db-test")
+async def db_test():
+    user = await user_col.find_one()
+    return {
+        "status": "ok",
+        "user_found": True if user else False
+    }

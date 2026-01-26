@@ -5,12 +5,10 @@ class UserSignup(BaseModel):
     username: str
     email: EmailStr
     password: str
-
-    year_of_college: Optional[int] = None
-    age: Optional[int] = None
-    institution: Optional[str] = None
-    gender: Optional[str] = None
-
+    year_of_college: int
+    age: int
+    institution: str
+    gender: str
 
 class UserLogin(BaseModel):
     email: EmailStr

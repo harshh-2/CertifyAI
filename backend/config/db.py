@@ -16,3 +16,5 @@ db = client[DB_NAME]
 cert_col = db.get_collection("certifications") # Your Excel data
 user_col = db.get_collection("users")          # Your CRUD data
 review_col = db.get_collection("reviews")
+
+print("USER_COL TYPE:", type(user_col))
