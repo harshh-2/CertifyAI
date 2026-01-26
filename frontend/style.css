@@ -543,3 +543,103 @@ footer {
 .path-close:hover {
   color: #fff;
 }
+
+/* ================= PERSONA CARDS ================= */
+
+.persona-section {
+  padding: 64px 40px 96px;
+}
+
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.persona-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.persona-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+
+.persona-card.highlight {
+  border-color: rgba(34,197,94,0.6);
+}
+
+/* ICON */
+.persona-icon {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+/* TEXT */
+.persona-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.persona-sub {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* INNER BOX */
+.persona-box {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+}
+
+.persona-box h4 {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.persona-box ul {
+  list-style: none;
+  font-size: 0.85rem;
+  color: #d4d4d8;
+}
+
+.persona-box li {
+  margin-bottom: 8px;
+}
+
+/* BUTTONS */
+.persona-btn {
+  margin-top: auto;
+  margin-top: 32px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Variants */
+.persona-btn.primary {
+  background: #4ade80;
+  color: #000;
+}
+
+.persona-btn.ghost {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.persona-btn.muted {
+  background: rgba(255,255,255,0.15);
+  color: #111;
+}
