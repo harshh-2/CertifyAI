@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
+from fastapi.responses import FileResponse
 from config.db import db
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
@@ -6,12 +7,12 @@ from datetime import datetime
 import hashlib
 import os
 from io import BytesIO
+import uuid
 
 import pdfplumber
 from PIL import Image
 import pytesseract
 
-# NEW imports
 from utils.provider_map import PROVIDER_MAP
 from utils.skill_map import SKILL_MAP
 
@@ -19,11 +20,13 @@ router = APIRouter()
 
 vault_col = db["certificates"]
 
+UPLOAD_DIR = "uploads/certificates"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 SECRET_KEY = os.getenv("JWT_SECRET", "secret")
 ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
-
 
 # ---------------- AUTH ----------------
 
@@ -33,7 +36,6 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         return payload["sub"]
     except:
         raise HTTPException(status_code=401, detail="Invalid token")
-
 
 # ---------------- HELPERS ----------------
 
@@ -57,7 +59,6 @@ def detect_title(text: str):
     return "Unnamed Certificate"
 
 
-# NEW — Provider detection
 def detect_provider(text: str):
     text = text.lower()
     for k, v in PROVIDER_MAP.items():
@@ -66,7 +67,6 @@ def detect_provider(text: str):
     return "Unknown"
 
 
-# NEW — Skill extraction
 def extract_skills(text: str):
     text = text.lower()
     found = []
@@ -80,7 +80,6 @@ def extract_skills(text: str):
 
     return found
 
-
 # ---------------- ROUTES ----------------
 
 @router.post("/vault/upload")
@@ -90,19 +89,24 @@ async def upload_certificate(
 ):
 
     content = await file.read()
-
     file_hash = hashlib.sha256(content).hexdigest()
 
-    # Duplicate check per user
+    # Duplicate check
     if vault_col.find_one({"user_id": user_id, "file_hash": file_hash}):
         return {"status": "duplicate"}
 
     extracted_text = extract_text(file, content)
     title = detect_title(extracted_text)
-
-    # NEW
     provider = detect_provider(extracted_text)
     skills = extract_skills(extracted_text)
+
+    # Save file physically
+    ext = os.path.splitext(file.filename)[1]
+    filename = f"{uuid.uuid4()}{ext}"
+    file_path = os.path.join(UPLOAD_DIR, filename)
+
+    with open(file_path, "wb") as f:
+        f.write(content)
 
     doc = {
         "user_id": user_id,
@@ -112,6 +116,9 @@ async def upload_certificate(
         "skills": skills,
         "raw_text": extracted_text,
         "file_hash": file_hash,
+        "file_path": file_path,
+            "file_path": file_path,   # pdf preview line
+
         "uploaded_at": datetime.utcnow()
     }
 
@@ -139,3 +146,17 @@ def get_my_certificates(user_id: str = Depends(get_current_user)):
         "total": len(certs),
         "certificates": certs
     }
+
+
+@router.get("/vault/view/{filename}")
+def view_certificate(filename: str, user_id: str = Depends(get_current_user)):
+
+    cert = vault_col.find_one({
+        "user_id": user_id,
+        "file_path": {"$regex": filename}
+    })
+
+    if not cert:
+        raise HTTPException(status_code=404, detail="File not found")
+
+    return FileResponse(cert["file_path"])
