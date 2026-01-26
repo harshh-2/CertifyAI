@@ -52,6 +52,7 @@ circles.forEach(circle => {
   });
 });
 
+<<<<<<< Updated upstream
 async function signupUser() {
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
@@ -88,3 +89,28 @@ async function signupUser() {
     alert(result.detail || "Signup failed");
   }
 }
+=======
+/* ================= START EXPLORING POPUP ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const exploreBtn = document.querySelector(".hero-primary");
+  const exploreOverlay = document.getElementById("exploreOverlay");
+  const closeExplore = document.getElementById("closeExplore");
+
+  if (!exploreBtn || !exploreOverlay || !closeExplore) return;
+
+  exploreBtn.addEventListener("click", () => {
+    exploreOverlay.classList.add("active");
+  });
+
+  closeExplore.addEventListener("click", () => {
+    exploreOverlay.classList.remove("active");
+  });
+
+  exploreOverlay.addEventListener("click", (e) => {
+    if (e.target === exploreOverlay) {
+      exploreOverlay.classList.remove("active");
+    }
+  });
+});
+>>>>>>> Stashed changes
