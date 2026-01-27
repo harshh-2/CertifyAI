@@ -131,3 +131,50 @@ document.addEventListener("DOMContentLoaded", () => {
     pathOverlay.classList.remove("active");
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+
+  // Desktop
+  const authLinks = document.getElementById("auth-links");
+  const profileLinks = document.getElementById("profile-links");
+
+  // Mobile
+  const mobileLogin = document.getElementById("mobile-login");
+  const mobileSignup = document.getElementById("mobile-signup");
+  const mobileProfile = document.getElementById("mobile-profile");
+  const mobileLogout = document.getElementById("mobile-logout");
+
+  if (token) {
+    authLinks.style.display = "none";
+    profileLinks.style.display = "flex";
+
+    mobileLogin.style.display = "none";
+    mobileSignup.style.display = "none";
+    mobileProfile.style.display = "block";
+    mobileLogout.style.display = "block";
+  } else {
+    authLinks.style.display = "flex";
+    profileLinks.style.display = "none";
+
+    mobileLogin.style.display = "block";
+    mobileSignup.style.display = "block";
+    mobileProfile.style.display = "none";
+    mobileLogout.style.display = "none";
+  }
+});
+
+function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  window.location.href = "/";
+}
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+if (token) {
+  localStorage.setItem("token", token);
+  window.history.replaceState({}, document.title, "/index.html");
+}
+

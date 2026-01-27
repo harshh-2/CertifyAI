@@ -1,11 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile · CertifiAI</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profilestyle.css">
+
+  <!-- Particles -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
+
 <body>
-    
+
+<div id="particles-js"></div>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">CertifiAI</div>
+    <ul class="nav-links">
+      <li>Courses</li>
+      <li>Resources</li>
+      <li>Career Paths</li>
+      <li>Reviews</li>
+      <li>Pricing</li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn ghost">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="profile-shell">
+
+  <!-- PROFILE HERO -->
+  <section class="profile-hero">
+
+    <div class="profile-left">
+      <div class="avatar-animated">
+        <img id="mainAvatar"
+          src="https://api.dicebear.com/7.x/adventurer/svg?seed=CertifiAI"/>
+      </div>
+
+      <button class="btn ghost change-avatar" id="openAvatarModal">
+        Change Avatar
+      </button>
+    </div>
+
+    <div class="profile-right">
+      <h1>Ayush Kumar</h1>
+      <p class="subtitle">Computer Science Student</p>
+      <p class="about">
+        Passionate about certifications, cloud, and building AI-powered
+        platforms for student growth.
+      </p>
+
+      <div class="actions">
+        <button class="btn primary">Edit Profile</button>
+        <button class="btn ghost">Upload Resume</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section">
+    <h2 class="section-title">Licenses & Certifications</h2>
+
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
+        <h3>Web Development Fundamentals</h3>
+        <p>Issued by IBM · June 05, 2025</p>
+        <button class="cert-btn">View Credential</button>
+      </div>
+
+      <div class="cert-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg">
+        <h3>AWS Academy Cloud Architecting</h3>
+        <p>Issued by AWS · May 13, 2025</p>
+        <button class="cert-btn">View Credential</button>
+      </div>
+
+      <div class="cert-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg">
+        <h3>AWS Academy Cloud Foundations</h3>
+        <p>Issued by AWS · May 11, 2025</p>
+        <button class="cert-btn">View Credential</button>
+      </div>
+
+      <div class="cert-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg">
+        <h3>Cisco Introduction to IoT</h3>
+        <p>Issued by Cisco · May 04, 2025</p>
+        <button class="cert-btn">View Credential</button>
+      </div>
+
+      <!-- ADD CERT -->
+      <div class="cert-card add-cert">
+        <span>+</span>
+        <p>Add Certification</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- AVATAR MODAL -->
+<div class="avatar-modal" id="avatarModal">
+  <div class="avatar-box">
+    <h3>Select an Avatar</h3>
+
+    <div class="avatar-grid">
+      <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=AI">
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Cloud">
+      <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Cert">
+      <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Career">
+      <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Student">
+      <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Tech">
+    </div>
+
+    <button class="btn ghost close-modal">Close</button>
+  </div>
+</div>
+
+<script src="profilescript.js"></script>
 </body>
 </html>

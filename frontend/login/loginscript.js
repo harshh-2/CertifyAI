@@ -104,6 +104,9 @@ if (res.ok) {
   window.location.href = "/index.html";
 }
 
+function googleLogin() {
+  window.location.href = "http://127.0.0.1:8000/auth/google/login";
+}
 
 
 
