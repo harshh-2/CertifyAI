@@ -5,9 +5,6 @@ from routes import auth, recommend, vault
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
-
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Runs on server start
@@ -20,18 +17,10 @@ async def lifespan(app: FastAPI):
     # Runs on server shutdown
     client.close()
 
+# INITIALIZE ONLY ONCE
+app = FastAPI(title="CertifyAI", lifespan=lifespan)
 
-app = FastAPI(title="CertifyAI API", lifespan=lifespan)
-
-# Routers
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
-app.include_router(vault.router, tags=["Vault"])   # 👈 vault routes
-
-@app.get("/")
-async def health_check():
-    return {"status": "online", "database": "connected"}
-
+# 1. MIDDLEWARES
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -40,11 +29,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app = FastAPI()
-
 app.add_middleware(
-    SessionMiddleware,
+    SessionMiddleware, 
     secret_key="super-secret-session-key"
 )
 
-app.include_router(auth.router, prefix="/auth")
+# 2. ROUTERS
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
+app.include_router(vault.router, prefix="/vault", tags=["Vault"])
+
+# 3. HEALTH CHECK (Prevents the 404 at "/")
+@app.get("/")
+async def health_check():
+    return {
+        "status": "Certify AI Backend Online", 
+        "version": "1.0.0",
+    }
