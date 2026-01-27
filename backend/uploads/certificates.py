@@ -1,3 +1,4 @@
+import os
 UPLOAD_DIR = "uploads/certificates"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 

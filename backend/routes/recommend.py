@@ -34,7 +34,7 @@ async def get_path_skills(path_name: str):
 async def parse_resume(file: UploadFile = File(...),current_user: dict = Depends(get_current_user)):
     content = await file.read()
     text = get_text_from_pdf(content)
-    
+    current_user: dict = Depends(get_current_user)
     cursor = cert_col.find({}, {"Skill": 1, "_id": 0})
     all_db_skills = set()
     async for doc in cursor:
@@ -68,7 +68,8 @@ async def parse_resume(file: UploadFile = File(...),current_user: dict = Depends
 @router.post("/recommend-by-path")
 async def recommend_by_path(
     selected_path: str,
-    detected_skills: List[str] = Body(...)
+    detected_skills: List[str] = Body(...),
+    current_user: dict = Depends(get_current_user)
 ):
     if selected_path not in CAREER_PATHS:
         return {"error": "Invalid path selection"}
