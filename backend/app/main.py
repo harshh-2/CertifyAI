@@ -20,7 +20,17 @@ async def lifespan(app: FastAPI):
 # INITIALIZE ONLY ONCE
 app = FastAPI(title="CertifyAI", lifespan=lifespan)
 
-# 1. MIDDLEWARES
+app = FastAPI(title="CertifyAI API", lifespan=lifespan)
+
+# Routers
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
+app.include_router(vault.router, tags=["Vault"])   
+
+@app.get("/")
+async def health_check():
+    return {"status": "online", "database": "connected"}
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -33,16 +43,3 @@ app.add_middleware(
     SessionMiddleware, 
     secret_key="super-secret-session-key"
 )
-
-# 2. ROUTERS
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
-app.include_router(vault.router, prefix="/vault", tags=["Vault"])
-
-# 3. HEALTH CHECK (Prevents the 404 at "/")
-@app.get("/")
-async def health_check():
-    return {
-        "status": "Certify AI Backend Online", 
-        "version": "1.0.0",
-    }

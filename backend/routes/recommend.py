@@ -69,7 +69,7 @@ async def parse_resume(file: UploadFile = File(...),current_user: dict = Depends
 async def recommend_by_path(
     selected_path: str,
     detected_skills: List[str] = Body(...),
-    current_user: dict = Depends(get_current_user)
+
 ):
     if selected_path not in CAREER_PATHS:
         return {"error": "Invalid path selection"}
