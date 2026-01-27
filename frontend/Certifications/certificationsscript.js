@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('recommendBtn').addEventListener('click', fetchCerts);
 });
 
-async function fetchCerts() {
+  async function fetchCerts() {
     const params = new URLSearchParams(window.location.search);
     const pathName = params.get("path");
 
@@ -35,7 +35,7 @@ async function fetchCerts() {
     
     if (!token) {
         alert("Please login first to access the DigiVault recommendations.");
-        window.location.href = "../index.html"; // Redirect to login if no token
+        window.location.href = "../login/loginindex.html"; // Redirect to login if no token
         return;
     }
 
@@ -72,25 +72,29 @@ async function fetchCerts() {
         certsDiv.innerHTML = `<p class='error'>Error: ${err.message}</p>`;
     }
 }
-
-// 2. PRETTY RENDERER (Impactful UI)
 function renderRecommendations(data) {
     const certsDiv = document.getElementById("certsList");
+    const status = document.getElementById("progressStatus");
     
-    if (data.recommendations.length === 0) {
-        certsDiv.innerHTML = "<p>You're already industry-ready! Check the DigiVault for advanced certs.</p>";
-        return;
-    }
+    status.innerHTML = `You have mastered <strong>${data.stats.count}/${data.stats.total}</strong> path skills (${data.stats.score}%).`;
 
     certsDiv.innerHTML = data.recommendations.map(cert => `
         <div class="cert-card">
-            <div class="cert-badge">${cert.match_score}% Impact</div>
+            <div class="impact-badge">${cert.match_score}% Impact</div>
             <h3>${cert.Certification}</h3>
-            <p><strong>Provider:</strong> ${cert.Company}</p>
-            <div class="gap-info">
-                <span class="gap-tag missing">Fills Gap: ${cert.matching_skills.join(', ')}</span>
+            <span class="issuer">via ${cert.Company}</span>
+
+            <div class="bucket">
+                <span class="bucket-label" style="color:var(--warning)">🚀 Skills to Gain</span>
+                <div>${cert.to_learn.map(s => `<span class="tag tag-missing">${s}</span>`).join('') || 'None'}</div>
             </div>
-            <button class="vault-btn" onclick="saveToVault('${cert.Certification}')">Add to Roadmap</button>
+
+            <div class="bucket">
+                <span class="bucket-label" style="color:var(--success)">✅ Skills to Verify</span>
+                <div>${cert.to_verify.map(s => `<span class="tag tag-match">${s}</span>`).join('') || 'None'}</div>
+            </div>
+
+            <button class="vault-btn" onclick=" ">Add to Path</button>
         </div>
     `).join('');
 }

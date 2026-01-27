@@ -65,55 +65,48 @@ async def parse_resume(file: UploadFile = File(...),current_user: dict = Depends
     recommendations.sort(key=lambda x: x['match_score'], reverse=True)
     return {"filename": file.filename, "detected_skills": matched, "recommendations": recommendations}
 
-@router.post("/recommend-by-path")
-async def recommend_by_path(
-    selected_path: str,
-    detected_skills: List[str] = Body(...),
 
-):
+@router.post("/recommend-by-path")
+async def recommend_by_path(selected_path: str, detected_skills: List[str] = Body(...) , current_user: dict = Depends(get_current_user)):
     if selected_path not in CAREER_PATHS:
         return {"error": "Invalid path selection"}
 
-    required_skills = CAREER_PATHS[selected_path]
-    user_skills_set = set(s.lower() for s in detected_skills)
+    required_skills = [s.lower().strip() for s in CAREER_PATHS[selected_path]]
+    user_skills_set = set(s.lower().strip() for s in detected_skills)
+    total_path_count = len(required_skills)
 
-    matching = [s for s in required_skills if s.lower() in user_skills_set]
-    missing = [s for s in required_skills if s.lower() not in user_skills_set]
-
+    regex_pattern = "|".join(re.escape(s) for s in required_skills)
     recommendations = []
+    
+    async for cert in cert_col.find({"Skill": {"$regex": regex_pattern, "$options": "i"}}).limit(12):
+        cert_skills_list = [s.strip().lower() for s in re.split(r'[,•|]+', cert.get("Skill", ""))]
+        
+        # Intersection of Cert skills and the specific Career Path
+        relevant_in_cert = [s for s in cert_skills_list if s in required_skills]
+        if not relevant_in_cert: continue
 
-    if missing:
-        # 🧩 GAP-FILLING CERTIFICATIONS
-        regex_pattern = "|".join(re.escape(s) for s in missing)
+        to_learn = [s for s in relevant_in_cert if s not in user_skills_set]
+        to_verify = [s for s in relevant_in_cert if s in user_skills_set]
 
-        async for cert in cert_col.find(
-            {"Skill": {"$regex": regex_pattern, "$options": "i"}}
-        ).limit(7):
-            cert["_id"] = str(cert["_id"])
-            score, m, mis = calculate_match_score(missing, cert.get("Skill", ""))
-            cert.update({
-                "match_score": score,
-                "matching_skills": m,
-                "missing_skills": mis
-            })
-            recommendations.append(cert)
+        # CALCULATE IMPACT
+        base_coverage = (len(relevant_in_cert) / total_path_count) * 100
+        bonus = (15 + (len(to_learn) * 2)) if to_learn else 0
+        final_score = min(round(base_coverage + bonus), 100)
 
-    else:
-        # 🎓 VALIDATION / ADVANCED CERTIFICATIONS
-        async for cert in cert_col.find(
-            {"Domain": {"$regex": selected_path.split()[0], "$options": "i"}}
-        ).limit(5):
-            cert["_id"] = str(cert["_id"])
-            cert.update({
-                "match_score": 100,
-                "matching_skills": required_skills,
-                "missing_skills": []
-            })
-            recommendations.append(cert)
+        recommendations.append({
+            "_id": str(cert["_id"]),
+            "Certification": cert["Certification"],
+            "Company": cert["Company"],
+            "match_score": final_score,
+            "to_learn": to_learn,
+            "to_verify": to_verify
+        })
 
     return {
-        "path": selected_path,
-        "matching_skills": matching,
-        "missing_skills": missing,
-        "recommendations": recommendations
+        "stats": {
+            "score": round((len(user_skills_set.intersection(set(required_skills))) / total_path_count) * 100),
+            "count": len(user_skills_set.intersection(set(required_skills))),
+            "total": total_path_count
+        },
+        "recommendations": sorted(recommendations, key=lambda x: x['match_score'], reverse=True)
     }

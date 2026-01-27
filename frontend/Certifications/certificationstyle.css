@@ -1,9 +1,10 @@
 :root {
     --bg-dark: #0f172a;
+    --sidebar-bg: #0b0f19;
     --card-bg: #1e293b;
     --accent: #38bdf8;
-    --success: #22c55e;
-    --warning: #f59e0b;
+    --success: #10b981;
+    --warning: #fbbf24;
     --text-main: #f8fafc;
     --text-dim: #94a3b8;
 }
@@ -13,107 +14,60 @@ body {
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     margin: 0;
-    display: flex;
-    height: 100vh;
+    overflow: hidden;
 }
 
-.dashboard-container {
-    display: flex;
-    width: 100%;
-}
+.dashboard-container { display: flex; height: 100vh; width: 100vw; }
 
-/* Sidebar Styling */
 .sidebar {
-    width: 300px;
-    background: var(--card-bg);
-    padding: 2rem;
-    border-right: 1px solid #334155;
-    overflow-y: auto;
+    width: 320px; background: var(--sidebar-bg);
+    padding: 2rem; border-right: 1px solid #334155;
+    display: flex; flex-direction: column;
 }
 
-.skills-grid div {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    padding: 8px;
-    background: #0f172a;
-    border-radius: 6px;
+.logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 2rem; }
+
+.skills-grid { flex-grow: 1; overflow-y: auto; margin-bottom: 1rem; }
+
+.skill-checkbox-wrapper {
+    display: flex; align-items: center; padding: 10px;
+    background: var(--card-bg); border-radius: 8px; margin-bottom: 8px;
 }
 
-input[type="checkbox"] {
-    margin-right: 12px;
-    accent-color: var(--accent);
-}
-
-/* Main Content Area */
-.main-content {
-    flex: 1;
-    padding: 3rem;
-    overflow-y: auto;
-}
+.main-content { flex: 1; padding: 3rem; overflow-y: auto; }
 
 .certs-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2rem; margin-top: 2rem;
 }
 
-/* Certification Card */
+/* Card Styling */
 .cert-card {
-    background: var(--card-bg);
-    border: 1px solid #334155;
-    border-radius: 12px;
-    padding: 1.5rem;
-    position: relative;
-    transition: transform 0.2s;
+    background: var(--card-bg); border: 1px solid #334155;
+    border-radius: 20px; padding: 1.5rem; display: flex; flex-direction: column;
+    position: relative; transition: 0.3s;
 }
 
-.cert-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
+.cert-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+.impact-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: rgba(56, 189, 248, 0.1); color: var(--accent);
+    padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;
 }
 
-.cert-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--success);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
+.bucket { background: #0f172a; padding: 12px; border-radius: 12px; margin-top: 15px; }
+
+.bucket-label { display: block; font-size: 0.7rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; }
+
+.tag { padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; margin-right: 5px; margin-bottom: 5px; display: inline-block; }
+.tag-missing { background: rgba(251, 191, 36, 0.1); color: var(--warning); }
+.tag-match { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+
+.primary-btn, .vault-btn {
+    cursor: pointer; border: none; font-weight: 700; border-radius: 8px; transition: 0.2s;
 }
 
-.gap-info {
-    margin: 1rem 0;
-    padding: 10px;
-    background: #0f172a;
-    border-radius: 8px;
-    font-size: 0.85rem;
-}
-
-.missing { color: var(--warning); }
-
-.primary-btn {
-    width: 100%;
-    padding: 12px;
-    background: var(--accent);
-    color: black;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1rem;
-}
-
-.vault-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 8px;
-    border-radius: 6px;
-    cursor: pointer;
-}
+.primary-btn { background: var(--accent); padding: 12px; width: 100%; }
+.vault-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 10px; margin-top: 15px; }
+.vault-btn:hover { background: var(--accent); color: #000; }
