@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="profilestyle.css">
 
-  <!-- Particles -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 
@@ -26,9 +25,7 @@
       <li>Reviews</li>
       <li>Pricing</li>
     </ul>
-    <div class="nav-actions">
-      <button class="btn ghost">Logout</button>
-    </div>
+    <button class="btn ghost">Logout</button>
   </div>
 </header>
 
@@ -40,30 +37,27 @@
     <div class="profile-left">
       <div class="avatar-animated">
         <img id="mainAvatar"
-          src="https://api.dicebear.com/7.x/adventurer/svg?seed=CertifiAI"/>
+          src="https://api.dicebear.com/7.x/bottts/svg?seed=CertifiAI"/>
       </div>
 
-      <button class="btn ghost change-avatar" id="openAvatarModal">
-        Change Avatar
-      </button>
+      <button class="btn ghost" id="openAvatarModal">Change Avatar</button>
     </div>
 
     <div class="profile-right">
-      <h1>Ayush Kumar</h1>
-      <p class="subtitle">Computer Science Student</p>
-      <p class="about">
-        Passionate about certifications, cloud, and building AI-powered
-        platforms for student growth.
+      <h1 id="profileName">Ayush Kumar</h1>
+      <p class="subtitle" id="profileCourse">Computer Science Student</p>
+      <p class="about" id="profileAbout">
+        Passionate about certifications, cloud, and building AI-powered platforms.
       </p>
 
       <div class="actions">
-        <button class="btn primary">Edit Profile</button>
-        <button class="btn ghost">Upload Resume</button>
+        <button class="btn primary" id="editProfileBtn">Edit Profile</button>
+        <button class="btn ghost" id="uploadResumeBtn">Upload Resume</button>
       </div>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
+  <!-- LICENSES & CERTIFICATIONS (RESTORED) -->
   <section class="section">
     <h2 class="section-title">Licenses & Certifications</h2>
 
@@ -97,7 +91,6 @@
         <button class="cert-btn">View Credential</button>
       </div>
 
-      <!-- ADD CERT -->
       <div class="cert-card add-cert">
         <span>+</span>
         <p>Add Certification</p>
@@ -122,12 +115,46 @@
       <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Tech">
     </div>
 
-    <button class="btn ghost close-modal">Close</button>
+    <button class="btn ghost close-avatar">Close</button>
+  </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div class="edit-modal" id="editModal">
+  <div class="edit-box">
+    <h3>Edit Profile</h3>
+
+    <label>Name</label>
+    <input id="editName">
+
+    <label>Course</label>
+    <input id="editCourse">
+
+    <label>About</label>
+    <textarea id="editAbout"></textarea>
+
+    <label>Skills (comma separated)</label>
+    <input id="editSkills">
+
+    <div class="edit-actions">
+      <button class="btn ghost" id="cancelEdit">Cancel</button>
+      <button class="btn primary" id="saveEdit">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD RESUME MODAL -->
+<div class="edit-modal" id="resumeModal">
+  <div class="edit-box">
+    <h3>Upload Resume</h3>
+    <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+    <div class="edit-actions">
+      <button class="btn ghost" id="cancelResume">Cancel</button>
+      <button class="btn primary" id="uploadResume">Upload</button>
+    </div>
   </div>
 </div>
 
 <script src="profilescript.js"></script>
 </body>
 </html>
-<a href="../vault/vault.html">Go to Vault</a> <!-- clicking this will allow users to open thier vault or redirect to vault--> -->
-
