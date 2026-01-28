@@ -1,7 +1,6 @@
 :root {
-  --border: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.1);
   --muted: #a1a1aa;
-  --glow: #3b82f6;
 }
 
 * {
@@ -14,24 +13,17 @@
 body {
   background: #000;
   color: #fff;
-  overflow-x: hidden;
 }
 
-/* PARTICLES */
 #particles-js {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -1;
 }
 
-/* ===== NAVBAR FIX ===== */
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(8,8,10,0.85);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  background: rgba(10,10,12,0.9);
+  border-bottom: 1px solid var(--border);
 }
 
 .navbar-inner {
@@ -39,40 +31,16 @@ body {
   margin: auto;
   padding: 16px 48px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-.logo {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #fff;
-  letter-spacing: 0.4px;
+  align-items: center;
 }
 
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 32px;
   list-style: none;
 }
 
-.nav-links li {
-  color: #c7c7cc;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: color 0.25s ease;
-}
-
-.nav-links li:hover {
-  color: #fff;
-  text-shadow: 0 0 8px rgba(59,130,246,0.6);
-}
-
-.nav-actions .btn {
-  font-size: 0.9rem;
-}
-
-/* PROFILE SHELL */
 .profile-shell {
   max-width: 1200px;
   margin: 40px auto;
@@ -82,42 +50,35 @@ body {
   border: 1px solid var(--border);
 }
 
-/* HERO */
 .profile-hero {
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 48px;
-  align-items: center;
 }
 
-/* AVATAR ANIMATION */
 .avatar-animated {
   width: 220px;
   height: 220px;
   border-radius: 50%;
   overflow: hidden;
   animation: float 4s ease-in-out infinite;
-  box-shadow: 0 0 45px rgba(59,130,246,0.55);
-}
-
-.avatar-animated img {
-  width: 100%;
-  height: 100%;
-}
-
-.avatar-animated:hover {
-  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 0 40px rgba(59,130,246,0.6);
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
 }
 
-.subtitle { color: var(--muted); margin-top: 6px; }
-.about { margin-top: 18px; color: #d4d4d8; }
+.avatar-animated img {
+  width: 100%;
+}
 
-.actions { margin-top: 26px; display: flex; gap: 14px; }
+.actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
 
 .btn {
   padding: 8px 14px;
@@ -126,144 +87,234 @@ body {
   cursor: pointer;
 }
 
-.primary { background: #fff; color: #000; }
-.ghost { background: transparent; color: #b5b5b5; }
-
-/* CERTIFICATIONS */
-.section { margin-top: 80px; }
-
-.section-title {
-  font-size: 1.8rem;
-  margin-bottom: 32px;
-}
-
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 28px;
-}
-
-.cert-card {
+.primary {
   background: #fff;
   color: #000;
-  padding: 28px;
-  border-radius: 22px;
-  text-align: center;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.cert-card img {
-  height: 36px;
-  margin-bottom: 18px;
-}
-
-.cert-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-}
-
-.cert-card p {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.cert-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-}
-
-.cert-btn {
-  margin-top: 18px;
-  padding: 10px 16px;
-  background: #1d0fbf;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* ADD CERT */
-.add-cert {
-  border: 2px dashed #ccc;
+.ghost {
   background: transparent;
-  color: #fff;
+  color: #aaa;
 }
 
-.add-cert span {
-  font-size: 2.4rem;
-}
-
-/* ===== AVATAR MODAL FIX ===== */
-.avatar-modal {
+/* MODALS */
+.avatar-modal, .edit-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.78);
-  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.8);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 999;
 }
 
-.avatar-modal.active {
+.avatar-modal.active,
+.edit-modal.active {
   display: flex;
 }
 
-.avatar-box {
-  width: min(640px, 92%);
+.avatar-box, .edit-box {
   background: #0b0b0d;
-  padding: 40px;
-  border-radius: 26px;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 40px 120px rgba(0,0,0,0.9);
-  text-align: center;
+  padding: 36px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  width: min(520px, 90%);
 }
 
-.avatar-box h3 {
-  font-size: 1.4rem;
-  margin-bottom: 26px;
-}
-
-/* GRID */
 .avatar-grid {
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-bottom: 32px;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
 }
 
 .avatar-grid img {
-  width: 100%;
-  aspect-ratio: 1;
-  padding: 14px;
-  border-radius: 22px;
   cursor: pointer;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: 
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+  border-radius: 14px;
+  background: #111;
+  padding: 10px;
 }
 
-.avatar-grid img:hover {
-  transform: scale(1.12);
-  background: rgba(59,130,246,0.25);
-  box-shadow: 0 0 35px rgba(59,130,246,0.65);
+.edit-box input,
+.edit-box textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #111;
+  border: 1px solid var(--border);
+  color: #fff;
 }
 
-/* MOBILE */
-@media (max-width: 600px) {
-  .avatar-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.edit-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
 }
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .profile-hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .avatar-animated { margin: auto; }
-  .actions { justify-content: center; }
+
+/* ===============================
+   CERTIFICATIONS – HARD FIX
+   =============================== */
+
+.cert-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* Card */
+.cert-card {
+  position: relative;
+  overflow: hidden;              /* 🔒 CLIP BIG LOGOS */
+  background: #ffffff;
+  color: #000;
+  padding: 26px 24px 28px;
+  border-radius: 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 260px;
+}
+
+/* Logo */
+.cert-card img {
+  max-width: 140px;              /* ✅ CONSTRAIN LOGO */
+  max-height: 48px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 18px;
+  display: block;
+  filter: none;
+}
+
+/* Title */
+.cert-card h3 {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+/* Meta text */
+.cert-card p {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+/* Button */
+.cert-btn {
+  align-self: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hover */
+.cert-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+}
+
+/* ADD CERT CARD */
+.cert-card.add-cert {
+  background: transparent;
+  color: #fff;
+  border: 2px dashed rgba(255,255,255,0.4);
+  justify-content: center;
+}
+
+.cert-card.add-cert span {
+  font-size: 2.2rem;
+}
+
+/* ===============================
+   LICENSES & CERTIFICATIONS FIX
+   =============================== */
+
+.section {
+  position: relative;
+  z-index: 2;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* CARD */
+.cert-card {
+  position: relative;
+  background: #ffffff;
+  color: #000;
+  border-radius: 22px;
+  padding: 26px 24px 28px;
+  text-align: center;
+  overflow: hidden;                 /* 🔒 stops logo bleed */
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* LOGO – THIS IS THE MAIN FIX */
+.cert-card img {
+  max-width: 140px;                 /* hard cap */
+  max-height: 48px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 16px;
+  display: block;
+}
+
+/* TITLE */
+.cert-card h3 {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+/* META */
+.cert-card p {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 14px;
+}
+
+/* BUTTON */
+.cert-btn {
+  align-self: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* HOVER */
+.cert-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+}
+
+/* ADD CERT CARD */
+.cert-card.add-cert {
+  background: transparent;
+  color: #fff;
+  border: 2px dashed rgba(255,255,255,0.35);
+  justify-content: center;
+}
+
+.cert-card.add-cert span {
+  font-size: 2.2rem;
 }
