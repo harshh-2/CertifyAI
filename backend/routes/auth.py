@@ -6,6 +6,12 @@ from models.user import UserSignup
 from utils.auth_utils import hash_password, create_access_token
 from fastapi import HTTPException, status
 from datetime import datetime
+from fastapi import Request
+from utils.google_oauth import oauth
+from utils.auth_utils import create_access_token
+from config.db import user_col
+from starlette.responses import RedirectResponse
+
 
 router = APIRouter(
     tags=["Authentication"]
@@ -80,4 +86,37 @@ async def login(user: UserLogin):
     }
 
 
+@router.get("/google/login")
+async def google_login(request: Request):
+    redirect_uri = "http://127.0.0.1:8000/auth/google/callback"
+    return await oauth.google.authorize_redirect(request, redirect_uri)
+
+
+@router.get("/google/callback")
+async def google_callback(request: Request):
+    # Exchange code for token
+    token = await oauth.google.authorize_access_token(request)
+
+    # ✅ CORRECT way to get user info
+    user_info = await oauth.google.parse_id_token(request, token)
+
+    email = user_info["email"]
+    name = user_info.get("name", email.split("@")[0])
+
+    # Find or create user
+    user = await user_col.find_one({"email": email})
+    if not user:
+        await user_col.insert_one({
+            "username": name,
+            "email": email,
+            "provider": "google"
+        })
+
+    # Create JWT
+    jwt_token = create_access_token({"sub": email})
+
+    # Redirect back to frontend
+    return RedirectResponse(
+        url=f"http://127.0.0.1:5500/index.html?token={jwt_token}"
+    )
 

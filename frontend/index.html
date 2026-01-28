@@ -130,13 +130,133 @@
   </div>
 </section>
 
-<section class="features">
-  <div class="feature-card">AI Certification Recommender</div>
-  <div class="feature-card">Certification Vault</div>
-  <div class="feature-card">Career Path Explorer</div>
-  <div class="feature-card">Verified Reviews</div>
-  <div class="feature-card">AI Doubt Solver</div>
-  <div class="feature-card">Rewards & Discounts</div>
+<section class="product-carousel">
+
+  <h2 class="carousel-title">Everything CertifiAI Offers</h2>
+  <p class="carousel-subtitle">
+    A unified ecosystem for certifications, careers, and credibility.
+  </p>
+
+  <div class="carousel-wrapper">
+    
+    <div class="carousel-track">
+
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485" />
+        <h3>AI Certifications</h3>
+        <p>Smart, AI-driven certification recommendations tailored to your goals.</p>
+      </div>
+
+      <div class="carousel-card">
+        <img src="https://t4.ftcdn.net/jpg/01/04/60/61/360_F_104606150_6TQ2nemhD8iflKwwwXjnq7Ayf8Lhjwgg.jpg" />
+        <h3>Certifications Vault</h3>
+        <p>Securely store, manage, and verify all your credentials.</p>
+      </div>
+
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998" />
+        <h3>Career Path Explorer</h3>
+        <p>Step-by-step roadmaps from student to industry-ready professional.</p>
+      </div>
+
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" />
+        <h3>Verified Reviews</h3>
+        <p>Trusted reviews from real learners and verified professionals.</p>
+      </div>
+
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1629904853716-f0bc54eea481" />
+        <h3>AI Doubt Solver</h3>
+        <p>Instant AI-powered help for certifications, skills, and concepts.</p>
+      </div>
+
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc" />
+        <h3>Rewards & Discounts</h3>
+        <p>Exclusive deals and benefits unlocked through verified learning.</p>
+      </div>
+
+      <div class="carousel-card">
+        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4" />
+        <h3>Resume Builder</h3>
+        <p>AI-powered resumes mapped directly to certifications and roles.</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+
+<section class="persona-section">
+  <div class="persona-grid">
+
+    <!-- STUDENTS -->
+    <div class="persona-card highlight">
+      <div class="persona-icon">🎓</div>
+      <h3>For Students</h3>
+      <p class="persona-sub">Take control of your career journey</p>
+
+      <div class="persona-box">
+        <h4>Get Started Today</h4>
+        <ul>
+          <li>✓ Create your free CertifiAI profile</li>
+          <li>✓ Upload your resume or set career goals</li>
+          <li>✓ Get a personalized skill roadmap</li>
+          <li>✓ Build a verified credential vault</li>
+        </ul>
+      </div>
+
+      <button class="persona-btn primary">
+        Your Skills. Your Future. Verified.
+      </button>
+    </div>
+
+    <!-- RECRUITERS -->
+    <div class="persona-card">
+      <div class="persona-icon">🏢</div>
+      <h3>For Recruiters</h3>
+      <p class="persona-sub">Hire with confidence, not hope</p>
+
+      <div class="persona-box">
+        <h4>Transform Your Hiring</h4>
+        <ul>
+          <li>✓ Access pre-verified candidate profiles</li>
+          <li>✓ One-click skill verification</li>
+          <li>✓ Reduce hiring time & cost</li>
+          <li>✓ Improve quality of hire</li>
+        </ul>
+      </div>
+
+      <button class="persona-btn ghost">
+        100% Verified. Zero Doubt.
+      </button>
+    </div>
+
+    <!-- INSTITUTIONS -->
+    <div class="persona-card">
+      <div class="persona-icon">🏛️</div>
+      <h3>For Institutions</h3>
+      <p class="persona-sub">Bridge education & employment</p>
+
+      <div class="persona-box">
+        <h4>Partner With Us</h4>
+        <ul>
+          <li>✓ Integrate CertifiAI with LMS</li>
+          <li>✓ Issue digitally verified credentials</li>
+          <li>✓ Improve placement outcomes</li>
+          <li>✓ Align curriculum with industry</li>
+        </ul>
+      </div>
+
+      <button class="persona-btn muted">
+        Verified Skills. Better Outcomes.
+      </button>
+    </div>
+
+  </div>
 </section>
 
 <footer>
@@ -145,7 +265,7 @@
 
 </main>
 
-
+<script src="script.js"></script>
 
 <!-- ===== START EXPLORING POPUP ===== -->
 <div class="explore-overlay" id="exploreOverlay">
@@ -183,7 +303,7 @@
   </div>
 </div>
 
-<!-- ===== POPUP 2 : POPULAR PATHS ===== -->
+<!-- ===== POPUP : POPULAR PATHS ===== -->
 <div class="path-overlay" id="pathOverlay">
   <div class="path-modal">
 
@@ -193,23 +313,28 @@
 
     <div class="path-grid">
 
-      <div class="path-card" data-skills="Python • Machine Learning • Deep Learning • PyTorch • TensorFlow • NLP • SQL">
-        AI / ML Engineer
+      <div class="path-card"
+           data-skills="Python • Machine Learning • Deep Learning • PyTorch • TensorFlow • NLP • SQL">
+        AI/ML Engineer
       </div>
 
-      <div class="path-card" data-skills="HTML • CSS • JavaScript • React • TypeScript • Angular • Vue">
+      <div class="path-card"
+           data-skills="HTML • CSS • JavaScript • React • TypeScript • Angular • Vue">
         Frontend Developer
       </div>
 
-      <div class="path-card" data-skills="JavaScript • Node.js • React • MongoDB • SQL • HTML • CSS • Express">
+      <div class="path-card"
+           data-skills="JavaScript • Node.js • React • MongoDB • SQL • HTML • CSS • Express">
         Fullstack Developer
       </div>
 
-      <div class="path-card" data-skills="AWS • Docker • Kubernetes • Azure • Terraform • Linux">
+      <div class="path-card"
+           data-skills="AWS • Docker • Kubernetes • Azure • Terraform • Linux">
         Cloud Engineer
       </div>
 
-      <div class="path-card" data-skills="CI/CD • Docker • Kubernetes • Jenkins • AWS • Python • Linux">
+      <div class="path-card"
+           data-skills="CI/CD • Docker • Kubernetes • Jenkins • AWS • Python • Linux">
         DevOps Engineer
       </div>
 
@@ -218,6 +343,6 @@
     <button class="create-path-btn">Create your own path</button>
   </div>
 </div>
-
+<script src="script.js"></script>
 </body>
 </html>
