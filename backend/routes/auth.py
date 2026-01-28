@@ -3,13 +3,11 @@ from models.user import UserLogin
 from utils.auth_utils import verify_password, create_access_token
 from config.db import user_col
 from models.user import UserSignup
-from utils.auth_utils import hash_password, create_access_token
-from fastapi import HTTPException, status
+from utils.auth_utils import hash_password
+from fastapi import status
 from datetime import datetime
 from fastapi import Request
 from utils.google_oauth import oauth
-from utils.auth_utils import create_access_token
-from config.db import user_col
 from starlette.responses import RedirectResponse
 
 
