@@ -21,7 +21,7 @@ router = APIRouter()
 vault_col = db["certificates"]
 
 UPLOAD_DIR = "uploads/certificates"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+##os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
