@@ -25,7 +25,7 @@
       <li>Reviews</li>
       <li>Pricing</li>
     </ul>
-    <button class="btn ghost">Logout</button>
+    <button class="btn ghost"onclick="logout()">Logout</button>
   </div>
 </header>
 
@@ -61,9 +61,9 @@
   <section class="section">
     <h2 class="section-title">Licenses & Certifications</h2>
 
-    <div class="cert-grid">
+    <div class="cert-grid" id="certGrid">
 
-      <div class="cert-card">
+      <!-- <div class="cert-card" >
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
         <h3>Web Development Fundamentals</h3>
         <p>Issued by IBM · June 05, 2025</p>
@@ -89,12 +89,20 @@
         <h3>Cisco Introduction to IoT</h3>
         <p>Issued by Cisco · May 04, 2025</p>
         <button class="cert-btn">View Credential</button>
-      </div>
+      </div> -->
 
-      <div class="cert-card add-cert">
+      <div class="cert-card add-cert" onclick="openCertUpload()">
         <span>+</span>
         <p>Add Certification</p>
       </div>
+
+      <input
+        type="file"
+        id="certUploadInput"
+        accept=".pdf,.png,.jpg,.jpeg"
+        hidden
+      />
+
 
     </div>
   </section>
