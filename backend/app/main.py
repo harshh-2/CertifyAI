@@ -4,7 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
 from config.db import client
-from routes import auth, recommend, vault
+from routes import auth, recommend, vault, resume
+
+
 
 
 @asynccontextmanager
@@ -53,3 +55,4 @@ async def health_check():
         "status": "online",
         "database": "connected"
     }
+app.include_router(resume.router, tags=["Resume"])
