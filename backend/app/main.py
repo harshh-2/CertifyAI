@@ -1,40 +1,61 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from config.db import client
-from routes import auth, recommend, vault
 from fastapi.middleware.cors import CORSMiddleware
 
+from config.db import client
+from routes import auth, recommend, vault
 
 
+# ---------------- Lifespan (Startup / Shutdown) ----------------
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Runs on server start
+
+    # On server start
     try:
         await client.admin.command("ping")
         print("✅ Backend connected to MongoDB Atlas")
     except Exception as e:
         print(f"❌ DB Connection Error: {e}")
+
     yield
-    # Runs on server shutdown
+
+    # On server shutdown
     client.close()
+    print("🛑 MongoDB connection closed")
 
 
-app = FastAPI(title="CertifyAI API", lifespan=lifespan)
+# ---------------- App Init ----------------
 
-# Routers
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
-app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
-app.include_router(vault.router, tags=["Vault"])   # 👈 vault routes
+app = FastAPI(
+    title="CertifyAI API",
+    lifespan=lifespan
+)
 
-@app.get("/")
-async def health_check():
-    return {"status": "online", "database": "connected"}
+
+# ---------------- CORS (Frontend Access) ----------------
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],     # later replace with frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ---------------- Routers ----------------
+
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(recommend.router, prefix="/certs", tags=["Certifications"])
+app.include_router(vault.router, tags=["Vault"])
+
+
+# ---------------- Health Check ----------------
+
+@app.get("/")
+async def health_check():
+    return {
+        "status": "online",
+        "database": "connected"
+    }
