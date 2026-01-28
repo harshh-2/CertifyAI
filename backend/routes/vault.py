@@ -1,14 +1,11 @@
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 from fastapi.responses import FileResponse
 from config.db import db
-from fastapi.security import OAuth2PasswordBearer
-from jose import jwt
 from datetime import datetime
 import hashlib
-import os
 from io import BytesIO
 import uuid
-
+from utils.jwt_dependency import get_current_user
 import pdfplumber
 from PIL import Image
 import pytesseract
@@ -22,20 +19,6 @@ vault_col = db["certificates"]
 
 UPLOAD_DIR = "uploads/certificates"
 ##os.makedirs(UPLOAD_DIR, exist_ok=True)
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
-
-SECRET_KEY = os.getenv("JWT_SECRET", "secret")
-ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
-
-# ---------------- AUTH ----------------
-
-def get_current_user(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return payload["sub"]
-    except:
-        raise HTTPException(status_code=401, detail="Invalid token")
 
 # ---------------- HELPERS ----------------
 

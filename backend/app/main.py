@@ -2,12 +2,8 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
-
 from config.db import client
-from routes import auth, recommend, vault, resume
-
-
-
+from routes import auth, recommend, vault, resume, profile
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -56,3 +52,5 @@ async def health_check():
         "database": "connected"
     }
 app.include_router(resume.router, tags=["Resume"])
+app.include_router(profile.router, tags=["Profile"])
+

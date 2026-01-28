@@ -67,7 +67,7 @@ async def parse_resume(file: UploadFile = File(...),current_user: dict = Depends
 
 
 @router.post("/recommend-by-path")
-async def recommend_by_path(selected_path: str, detected_skills: List[str] = Body(...) \):
+async def recommend_by_path(selected_path: str, detected_skills: List[str] = Body(...) ):
     if selected_path not in CAREER_PATHS:
         return {"error": "Invalid path selection"}
 
