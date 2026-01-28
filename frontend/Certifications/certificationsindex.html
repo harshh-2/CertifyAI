@@ -1,34 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certify AI | Roadmap</title>
-    <link rel="stylesheet" href="certificationstyle.css">
-</head>
-<body>
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="logo">Certify AI</div>
-            <h2 id="pathTitle">Career Path</h2>
-            <p class="subtitle">Verify your existing skills to update your roadmap:</p>
-            <div id="skillsList" class="skills-grid"></div>
-            <button id="recommendBtn" class="primary-btn">Analyze Skill Gaps</button>
-        </aside>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CertifiAI | Roadmap</title>
 
-        <main class="main-content">
-            <header class="content-header">
-                <div class="header-info">
-                    <h1>Personalized Path Roadmap</h1>
-                    <p id="progressStatus">Detecting your current industry standing...</p>
-                </div>
-                <div id="overallStats" class="stats-badge"></div>
-            </header>
-            
-            <div id="certsList" class="certs-container">
-                </div>
-        </main>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- SAME THEME FILE -->
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="certificationstyle.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<!-- ✅ SAME NAVBAR (COPIED AS-IS) -->
+<header class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">CertifiAI</div>
+
+    <ul class="nav-links">
+      <li>Courses</li>
+      <li>Resources</li>
+      <li>Career Paths</li>
+      <li>Reviews</li>
+      <li>Pricing</li>
+    </ul>
+
+    <div class="nav-actions">
+      <div id="auth-links">
+        <a href="../login/loginindex.html" class="btn ghost">Log in</a>
+        <a href="../signup/signupindex.html" class="btn primary">Sign up</a>
+      </div>
+
+      <div id="profile-links" style="display:none;">
+        <a href="../profile/profileindex.html" class="btn ghost">View Profile</a>
+        <button class="btn primary" onclick="logout()">Logout</button>
+      </div>
     </div>
-    <script src="certificationsscript.js"></script>
+
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li>Courses</li>
+      <li>Resources</li>
+      <li>Career Paths</li>
+      <li>Reviews</li>
+      <li>Pricing</li>
+      <li class="divider"></li>
+      <li id="mobile-login"><a href="../login/loginindex.html">Log in</a></li>
+      <li id="mobile-signup" class="signup"><a href="../signup/signupindex.html">Sign up</a></li>
+      <li id="mobile-profile" style="display:none;">
+        <a href="../profile/profile.html">View Profile</a>
+      </li>
+      <li id="mobile-logout" style="display:none;" onclick="logout()">Logout</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== APP SHELL ===== -->
+<main class="app-shell roadmap-shell">
+
+  <!-- LEFT -->
+  <aside class="roadmap-sidebar">
+    <h2 id="pathTitle">Career Path</h2>
+    <p class="subtitle">Verify your existing skills</p>
+
+    <div class="skill-actions">
+      <button id="selectAll" class="skill-action-btn">Select All</button>
+      <button id="clearAll" class="skill-action-btn ghost">Clear</button>
+    </div>
+
+    <div id="skillsList" class="skills-grid"></div>
+
+    <button id="recommendBtn" class="btn primary full">
+      Analyze Skill Gaps
+    </button>
+  </aside>
+
+  <!-- RIGHT -->
+  <section class="roadmap-content">
+
+    <header class="roadmap-header">
+      <h1>Personalized Roadmap</h1>
+
+      <div class="progress-ring">
+        <svg width="80" height="80">
+          <circle class="ring-bg" cx="40" cy="40" r="34"/>
+          <circle class="ring-progress" cx="40" cy="40" r="34"/>
+        </svg>
+        <span id="progressPercent">0%</span>
+      </div>
+    </header>
+
+    <div id="certsList" class="certs-grid"></div>
+
+  </section>
+
+</main>
+
+<script src="certificationsscript.js"></script>
+
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    size: { value: 2 },
+    opacity: { value: 0.45 },
+    move: { speed: 1.2 },
+    line_linked: { enable: true, opacity: 0.25 }
+  }
+});
+</script>
+
 </body>
 </html>
